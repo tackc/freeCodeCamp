@@ -7,8 +7,11 @@ forumTopicId: 301952
 
 ## Description
 <section id='description'>
+
 The prime factors of 13195 are 5, 7, 13 and 29.
-What is the largest prime factor of the given <code>number</code>?
+
+What is the largest prime factor of the given `number`?
+
 </section>
 
 ## Instructions
@@ -21,6 +24,8 @@ What is the largest prime factor of the given <code>number</code>?
 
 ```yml
 tests:
+  - text: <code>largestPrimeFactor(2)</code> should return a number.
+    testString: assert(typeof largestPrimeFactor(2) === 'number');
   - text: <code>largestPrimeFactor(2)</code> should return 2.
     testString: assert.strictEqual(largestPrimeFactor(2), 2);
   - text: <code>largestPrimeFactor(3)</code> should return 3.
@@ -29,6 +34,8 @@ tests:
     testString: assert.strictEqual(largestPrimeFactor(5), 5);
   - text: <code>largestPrimeFactor(7)</code> should return 7.
     testString: assert.strictEqual(largestPrimeFactor(7), 7);
+  - text: <code>largestPrimeFactor(8)</code> should return 2.
+    testString: assert.strictEqual(largestPrimeFactor(8), 2);
   - text: <code>largestPrimeFactor(13195)</code> should return 29.
     testString: assert.strictEqual(largestPrimeFactor(13195), 29);
   - text: <code>largestPrimeFactor(600851475143)</code> should return 6857.
@@ -63,14 +70,18 @@ largestPrimeFactor(13195);
 
 
 ```js
-const largestPrimeFactor = (number)=>{
+const largestPrimeFactor = (number) => {
   let largestFactor = number;
-  for(let i = 2;i<largestFactor;i++){
-  if(!(largestFactor%i)){
-    largestFactor = largestFactor/i;
-    largestPrimeFactor(largestFactor);
+
+  for (let i = 2; i <= Math.sqrt(largestFactor); i++) {
+    if (!(largestFactor % i)) {
+      let factor = largestFactor / i;
+      let candidate = largestPrimeFactor(factor);
+
+      return i > candidate ? i : candidate;
+    }
   }
-  }
+
   return largestFactor;
 }
 ```

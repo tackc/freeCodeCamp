@@ -46,7 +46,9 @@ tests:
     testString: assert(abTest(2,8) === 18 );
   - text: <code>abTest(3,3)</code> should return <code>12</code>
     testString: assert(abTest(3,3) === 12 );
-
+  - text: <code>abTest(0,0)</code> should return <code>0</code>
+    testString: assert(abTest(0,0) === 0);
+    
 ```
 
 </section>
@@ -68,7 +70,6 @@ function abTest(a, b) {
   return Math.round(Math.pow(Math.sqrt(a) + Math.sqrt(b), 2));
 }
 
-// Change values below to test your code
 abTest(2,2);
 ```
 
